@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLASSIFIED DATABASE</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#00ff66;
+    font-family:Consolas, monospace;
+    overflow:hidden;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:-1;
+}
+
+#terminal{
+    width:90%;
+    max-width:900px;
+    height:90vh;
+    margin:20px auto;
+    border:1px solid #00ff66;
+    padding:20px;
+    overflow-y:auto;
+    background:rgba(0,0,0,.85);
+    box-shadow:0 0 20px rgba(0,255,100,.25);
+}
+
+.line{
+    margin:8px 0;
+    white-space:pre-wrap;
+    font-size:18px;
+}
+
+.cursor{
+    display:inline-block;
+    width:8px;
+    height:18px;
+    background:#00ff66;
+    margin-left:2px;
+    animation:blink .8s infinite;
+}
+
+@keyframes blink{
+    50%{
+        opacity:0;
+    }
+}
+
+button{
+    margin-top:25px;
+    padding:12px 30px;
+    border:none;
+    background:#00ff66;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    display:none;
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div id="terminal"></div>
+
+<script>
+
+const terminal=document.getElementById("terminal");
+
+function wait(ms){
+    return new Promise(r=>setTimeout(r,ms));
+}
+
+async function type(text,speed=30){
+
+    return new Promise(resolve=>{
+
+        const line=document.createElement("div");
+        line.className="line";
+
+        terminal.appendChild(line);
+
+        const cursor=document.createElement("span");
+        cursor.className="cursor";
+
+        line.appendChild(cursor);
+
+        let i=0;
+
+        const timer=setInterval(()=>{
+
+            if(i<text.length){
+
+                line.insertBefore(document.createTextNode(text[i]),cursor);
+
+                i++;
+
+                terminal.scrollTop=terminal.scrollHeight;
+
+            }else{
+
+                clearInterval(timer);
+
+                cursor.remove();
+
+                setTimeout(resolve,500);
+
+            }
+
+        },speed);
+
+    });
+
+}
+
+async function intro(){
+
+await type("⚠ UNAUTHORIZED ACCESS");
+
+await wait(700);
+
+await type("");
+
+await type("Establishing Secure Connection...");
+
+await wait(500);
+
+await type("");
+
+await type("████████████████████ 100%");
+
+await wait(700);
+
+await type("");
+
+await type("Connection Established.");
+
+await wait(800);
+
+await type("");
+
+await type("WARNING");
+
+await wait(500);
+
+await type("");
+
+await type("This website contains classified information regarding:");
+
+await type("");
+
+await type("Class XI Commerce");
+
+await type("Mt. Everest Higher Secondary School");
+
+await wait(700);
+
+await type("");
+
+await type("Student access is strictly prohibited.");
+
+await wait(700);
+
+await type("");
+
+await type("Reason:");
+
+await wait(400);
+
+await type("The truth may permanently damage friendships.");
+
+await wait(1200);
+
+await type("");
+
+const btn=document.createElement("button");
+
+btn.innerText="ENTER ANYWAY";
+
+btn.style.display="inline-block";
+
+terminal.appendChild(btn);
+
+btn.onclick=boot;
+
+}
+
+async function boot(){
+
+terminal.innerHTML="";
+
+await type("INITIALIZING...");
+await wait(800);
+
+await type("");
+await type("Loading Artificial Intelligence Core...");
+await type("Loading Behaviour Analysis Engine...");
+await type("Loading Student Database...");
+await wait(800);
+
+await type("");
+await type("Connecting to School Database...");
+await type("Searching...");
+await wait(600);
+
+await type("Searching...");
+await wait(600);
+
+await type("Searching...");
+await wait(900);
+
+await type("");
+await type("Database Found.");
+await wait(600);
+
+await type("");
+await type("Bypassing Security...");
+await wait(900);
+
+await type("Bypassing Teacher Password...");
+await wait(1200);
+
+await type("Password Accepted.");
+await wait(700);
+
+await type("");
+await type("Downloading Student Records...");
+await wait(600);
+
+const progress=[
+"█□□□□□□□□□ 10%",
+"██□□□□□□□□ 20%",
+"███□□□□□□□ 30%",
+"████□□□□□□ 40%",
+"█████□□□□□ 50%",
+"██████□□□□ 60%",
+"███████□□□ 70%",
+"████████□□ 80%",
+"█████████□ 90%",
+"██████████ 100%"
+];
+
+for(const p of progress){
+
+    await type(p,18);
+
+    await wait(150);
+
+}
+
+await wait(600);
+
+terminal.innerHTML="";
+
+await type("AI CLASS ANALYSIS");
+await wait(700);
+
+await type("");
+
+await type("School :");
+await type("Mt. Everest Higher Secondary School");
+
+await wait(400);
+
+await type("");
+
+await type("Department :");
+await type("Commerce");
+
+await wait(400);
+
+await type("");
+
+await type("Class :");
+await type("XI");
+
+await wait(400);
+
+await type("");
+
+await type("Students Detected :");
+await type("28");
+
+await wait(800);
+
+await type("");
+
+await type("Scanning personalities...");
+await wait(700);
+
+await type("Scanning attendance excuses...");
+await wait(700);
+
+await type("Scanning homework history...");
+await wait(700);
+
+await type("Scanning bench ownership...");
+await wait(700);
+
+await type("Scanning missing pen reports...");
+await wait(700);
+
+await type("");
+
+await type("This may take a while...");
+await wait(900);
+
+await type("");
+
+await type("Reason:");
+await wait(400);
+
+await type("Too much nonsense detected.");
+await wait(1200);
+
+terminal.innerHTML="";
+
+await type("SCAN COMPLETE");
+await wait(900);
+
+await type("");
+
+await type("RESULT");
+await wait(500);
+
+await type("");
+
+await type("Students Found : 28");
+
+await wait(700);
+
+await type("");
+
+await type("Students claiming to be normal : 28");
+
+await wait(900);
+
+await type("");
+
+await type("Verifying...");
+await wait(900);
+
+await type("Verifying...");
+await wait(900);
+
+await type("Verifying...");
+await wait(1200);
+
+await type("");
+
+await type("CLAIM STATUS : FALSE");
+
+await wait(1500);
+
+terminal.innerHTML="";
+
+  await type("████ CONFIDENTIAL REPORT #001 ████");
+
+await wait(900);
+
+await type("");
+
+await type("CLASS STATUS REPORT");
+
+await wait(600);
+
+await type("");
+
+await type("Checking class timeline...");
+
+await wait(1000);
+
+await type("");
+
+await type("Result:");
+
+await wait(600);
+
+await type("");
+
+await type("This class has existed for only a few weeks.");
+
+await wait(1000);
+
+await type("");
+
+await type("Yet somehow...");
+
+await wait(1200);
+
+await type("");
+
+await type("✔ Friend groups have already formed.");
+
+await wait(900);
+
+await type("✔ Benches have already become private property.");
+
+await wait(900);
+
+await type("✔ Pens have already disappeared.");
+
+await wait(900);
+
+await type("✔ Homework has already changed owners.");
+
+await wait(900);
+
+await type("✔ Nicknames have already replaced real names.");
+
+await wait(1200);
+
+await type("");
+
+await type("AI Conclusion:");
+
+await wait(600);
+
+await type("");
+
+await type("Human beings adapt to new environments...");
+
+await wait(900);
+
+await type("Commerce students adapt to chaos much faster.");
+
+await wait(1500);
+
+await type("");
+
+await type("Opening Behaviour Database...");
+
+await wait(1000);
+
+terminal.innerHTML="";
+
+await type("████ CONFIDENTIAL REPORT #002 ████");
+
+await wait(900);
+
+await type("");
+
+await type("SOCIAL ANALYSIS");
+
+await wait(700);
+
+await type("");
+
+await type("Searching for the quietest student...");
+
+await wait(1400);
+
+await type("");
+
+await type("Search Failed.");
+
+await wait(900);
+
+await type("");
+
+await type("Reason:");
+
+await wait(500);
+
+await type("The class becomes louder every passing day.");
+
+await wait(1200);
+
+await type("");
+
+await type("Searching for the most serious student...");
+
+await wait(1500);
+
+await type("");
+
+await type("Multiple candidates detected...");
+
+await wait(900);
+
+await type("");
+
+await type("...until their friends arrive.");
+
+await wait(1500);
+
+await type("");
+
+await type("Searching for the first person to say:");
+
+await wait(700);
+
+await type("\"Bro, what's today's homework?\"");
+
+await wait(1200);
+
+await type("");
+
+await type("Result:");
+
+await wait(600);
+
+await type("Investigation still ongoing.");
+
+await wait(900);
+
+await type("The suspects keep changing every day.");
+
+await wait(1500);
+
+terminal.innerHTML="";
+
+await type("████ DATABASE MATCH ████");
+
+await wait(800);
+
+await type("");
+
+await type("Searching for the smartest student...");
+
+await wait(1200);
+
+await type("Searching...");
+
+await wait(1200);
+
+await type("Searching...");
+
+await wait(1200);
+
+await type("Searching...");
+
+await wait(1500);
+
+await type("");
+
+await type("Search Cancelled.");
+
+await wait(800);
+
+await type("");
+
+await type("Reason:");
+
+await wait(600);
+
+await type("Nobody has written the first major exam yet.");
+
+await wait(1200);
+
+await type("");
+
+await type("Prediction impossible.");
+
+await wait(900);
+
+await type("");
+
+await type("Confidence Level:");
+
+await wait(500);
+
+await type("Suspiciously High.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+  await type("████ CONFIDENTIAL REPORT #003 ████");
+
+await wait(800);
+
+await type("");
+
+await type("CLASSROOM SURVIVAL REPORT");
+
+await wait(700);
+
+await type("");
+
+await type("Running Daily Behaviour Simulation...");
+
+await wait(1200);
+
+await type("");
+
+await type("08:58 AM");
+
+await wait(500);
+
+await type("> Everyone is calm.");
+
+await wait(900);
+
+await type("");
+
+await type("09:00 AM");
+
+await wait(500);
+
+await type("> Teacher enters.");
+
+await wait(900);
+
+await type("");
+
+await type("09:01 AM");
+
+await wait(500);
+
+await type("> Entire class suddenly remembers they forgot something.");
+
+await wait(1200);
+
+await type("");
+
+await type("09:07 AM");
+
+await wait(500);
+
+await type("> One person asks, 'Did we have homework?'");
+
+await wait(1200);
+
+await type("");
+
+await type("09:07:05 AM");
+
+await wait(500);
+
+await type("> Panic spreads faster than Wi-Fi.");
+
+await wait(1500);
+
+terminal.innerHTML="";
+
+await type("████ HOMEWORK INVESTIGATION ████");
+
+await wait(900);
+
+await type("");
+
+await type("Tracing homework movement...");
+
+await wait(1200);
+
+await type("");
+
+await type("Original owner located.");
+
+await wait(900);
+
+await type("");
+
+await type("Tracking copies...");
+
+await wait(900);
+
+await type("");
+
+await type("Copy #1 Found.");
+
+await wait(600);
+
+await type("Copy #2 Found.");
+
+await wait(600);
+
+await type("Copy #3 Found.");
+
+await wait(600);
+
+await type("Copy #4 Found.");
+
+await wait(600);
+
+await type("Copy #5 Found.");
+
+await wait(1200);
+
+await type("");
+
+await type("Further tracking cancelled.");
+
+await wait(700);
+
+await type("Reason:");
+
+await wait(500);
+
+await type("The homework now belongs to the whole ecosystem.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("████ LUNCH INTELLIGENCE REPORT ████");
+
+await wait(900);
+
+await type("");
+
+await type("Scanning lunch boxes...");
+
+await wait(1200);
+
+await type("");
+
+await type("Interesting discovery...");
+
+await wait(900);
+
+await type("");
+
+await type("People who say...");
+
+await wait(500);
+
+await type("\"I'm not hungry.\"");
+
+await wait(900);
+
+await type("");
+
+await type("...are usually the first to ask:");
+
+await wait(900);
+
+await type("\"Can I have just one bite?\"");
+
+await wait(1500);
+
+await type("");
+
+await type("AI Conclusion:");
+
+await wait(600);
+
+await type("There is no such thing as 'one bite'.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("████ BENCH POLITICS ████");
+
+await wait(900);
+
+await type("");
+
+await type("Checking seat ownership...");
+
+await wait(1200);
+
+await type("");
+
+await type("Result:");
+
+await wait(700);
+
+await type("");
+
+await type("Every bench has at least one person claiming:");
+
+await wait(900);
+
+await type("\"This is my permanent seat.\"");
+
+await wait(1200);
+
+await type("");
+
+await type("Legal documents found:");
+
+await wait(700);
+
+await type("None.");
+
+await wait(1200);
+
+await type("");
+
+await type("Ownership Status:");
+
+await wait(700);
+
+await type("Still under international dispute.");
+
+await wait(2000);
+
+terminal.innerHTML="";
+
+  await type("████ COMMERCE AWARDS 2026 ████");
+
+await wait(900);
+
+await type("");
+
+await type("The AI has finished analysing the class.");
+
+await wait(1000);
+
+await type("Generating awards...");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("🏆 AWARD #001");
+
+await wait(600);
+
+await type("");
+
+await type("THE 'I'LL START TOMORROW' AWARD");
+
+await wait(800);
+
+await type("");
+
+await type("Given to:");
+
+await wait(500);
+
+await type("Whoever says...");
+
+await wait(500);
+
+await type("\"I'll study from tomorrow.\"");
+
+await wait(800);
+
+await type("");
+
+await type("Tomorrow never arrived.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("🏆 AWARD #002");
+
+await wait(700);
+
+await type("");
+
+await type("THE PROFESSIONAL PEN BORROWER");
+
+await wait(800);
+
+await type("");
+
+await type("Description:");
+
+await wait(600);
+
+await type("Borrows one pen.");
+
+await wait(600);
+
+await type("Returns zero pens.");
+
+await wait(1500);
+
+terminal.innerHTML="";
+
+await type("🏆 AWARD #003");
+
+await wait(700);
+
+await type("");
+
+await type("THE HUMAN ALARM CLOCK");
+
+await wait(700);
+
+await type("");
+
+await type("Special Ability:");
+
+await wait(500);
+
+await type("Always asks...");
+
+await wait(500);
+
+await type("\"What period is next?\"");
+
+await wait(900);
+
+await type("");
+
+await type("...even after hearing the bell.");
+
+await wait(1700);
+
+terminal.innerHTML="";
+
+await type("🏆 AWARD #004");
+
+await wait(700);
+
+await type("");
+
+await type("THE WIFI DETECTOR");
+
+await wait(800);
+
+await type("");
+
+await type("Can instantly sense");
+
+await wait(500);
+
+await type("when someone opens a game,");
+
+await wait(500);
+
+await type("plays music,");
+
+await wait(500);
+
+await type("or gets caught using a phone.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("🏆 AWARD #005");
+
+await wait(700);
+
+await type("");
+
+await type("THE LAST-MINUTE LEGEND");
+
+await wait(800);
+
+await type("");
+
+await type("Starts every assignment");
+
+await wait(500);
+
+await type("exactly five minutes");
+
+await wait(500);
+
+await type("before submission.");
+
+await wait(1800);
+
+terminal.innerHTML="";
+
+await type("████ FINAL AI VERDICT ████");
+
+await wait(1000);
+
+await type("");
+
+await type("Analysis Complete.");
+
+await wait(1000);
+
+await type("");
+
+await type("Students Analysed : 28");
+
+await wait(600);
+
+await type("Friend Groups Detected : Yes");
+
+await wait(600);
+
+await type("Homework Panic : Frequent");
+
+await wait(600);
+
+await type("Missing Pens : Too Many");
+
+await wait(600);
+
+await type("Random Laughing : Constant");
+
+await wait(600);
+
+await type("Energy Level : Unpredictable");
+
+await wait(1500);
+
+await type("");
+
+await type("Overall Result:");
+
+await wait(700);
+
+await type("");
+
+await type("This class is");
+
+await wait(700);
+
+await type("slightly chaotic...");
+
+await wait(900);
+
+await type("");
+
+await type("highly entertaining...");
+
+await wait(900);
+
+await type("");
+
+await type("and somehow");
+
+await wait(700);
+
+await type("already functioning like it has known each other for years.");
+
+await wait(1800);
+
+await type("");
+
+await type("No serious crimes detected.");
+
+await wait(800);
+
+await type("");
+
+await type("Only excessive levels of");
+
+await wait(700);
+
+await type("laughter,");
+
+await wait(400);
+
+await type("friendship,");
+
+await wait(400);
+
+await type("and last-minute confidence.");
+
+await wait(2000);
+
+await type("");
+
+await type("Closing database...");
+
+await wait(1200);
+
+await type("Deleting evidence...");
+
+await wait(1500);
+
+await type("Error.");
+
+await wait(1200);
+
+await type("Evidence has already been witnessed.");
+
+await wait(1200);
+
+await type("");
+
+await type("Thank you for using");
+
+await wait(700);
+
+await type("CLASSIFIED COMMERCE DATABASE.");
+
+await wait(1200);
+
+await type("");
+
+await type("Press F to pay respect to the missing pens.");
+
+await wait(1000);
+
+await type("");
+
+await type("END OF REPORT");
+
+  </script>
+
+</body>
+</html>
