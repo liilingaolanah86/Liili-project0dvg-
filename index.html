@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+oo<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -999,10 +999,325 @@ await wait(1000);
 
 await type("");
 
+await type("One final verification is required...");
 
-await type("END OF REPORT");
+await wait(1000);
+
+await type("");
+
+await type("Loading Interactive Verification Module...");
+
+await wait(1200);
+
+await type("████████████████████ 100%");
+
+await wait(800);
+
+terminal.innerHTML="";
+
+showQuiz();
+
+return;
 
 }   // closes boot()
+
+/* ===========================
+   INTERACTIVE FINAL QUIZ
+=========================== */
+
+const quiz = [
+{
+question:"Do you agree with this report?",
+yesReply:"System: Excellent. Correct answer recorded.",
+noReply:"System: Opinion noted."
+},
+{
+question:"Are you the quiet student?",
+yesReply:"System: Interesting...",
+noReply:"System: Volume levels confirmed."
+},
+{
+question:"Are you a good student?",
+yesReply:"System: Confidence detected.",
+noReply:"System: Honesty detected."
+},
+{
+question:"Are you a Sigma?",
+yesReply:"System: Aura level increasing...",
+noReply:"System: Interesting choice."
+},
+{
+question:"Are you the secret main character of this school?",
+yesReply:"System: Plot armor activated.",
+noReply:"System: Background character confirmed."
+},
+{
+question:"Have you ever spent a solid hour practicing your signature for when you're famous?",
+yesReply:"System: Future celebrity profile created.",
+noReply:"System: Fame postponed."
+}
+];
+
+let quizIndex=0;
+
+function showQuiz(){
+
+terminal.innerHTML="";
+
+const title=document.createElement("div");
+title.className="line";
+title.innerHTML="<b>FINAL VERIFICATION</b>";
+
+terminal.appendChild(title);
+
+const space=document.createElement("div");
+space.className="line";
+terminal.appendChild(space);
+
+showQuestion();
+
+}
+
+function showQuestion(){
+
+terminal.innerHTML="";
+
+const q=quiz[quizIndex];
+
+const question=document.createElement("div");
+question.className="line";
+question.style.fontSize="22px";
+question.innerHTML=q.question;
+
+terminal.appendChild(question);
+
+const br=document.createElement("br");
+terminal.appendChild(br);
+
+const yes=document.createElement("button");
+yes.innerHTML="✅ YES";
+yes.style.display="inline-block";
+yes.style.marginRight="20px";
+
+const no=document.createElement("button");
+no.innerHTML="❌ NO";
+no.style.display="inline-block";
+
+terminal.appendChild(yes);
+terminal.appendChild(no);
+
+const reply=document.createElement("div");
+reply.className="line";
+reply.style.marginTop="30px";
+terminal.appendChild(reply);
+
+yes.onclick=()=>{
+
+reply.innerHTML=q.yesReply;
+
+setTimeout(nextQuestion,1200);
+
+};
+
+no.onclick=()=>{
+
+reply.innerHTML=q.noReply;
+
+setTimeout(nextQuestion,1800);
+
+};
+
+}
+
+function nextQuestion(){
+
+quizIndex++;
+
+if(quizIndex<quiz.length){
+
+showQuestion();
+
+}else{
+
+showFinalQuestion();
+
+}
+
+}
+
+function showFinalQuestion(){
+
+terminal.innerHTML="";
+
+const title=document.createElement("div");
+title.className="line";
+title.innerHTML="<b>FINAL QUESTION</b>";
+
+terminal.appendChild(title);
+
+const space=document.createElement("div");
+space.className="line";
+terminal.appendChild(space);
+
+const q=document.createElement("div");
+q.className="line";
+q.style.fontSize="22px";
+q.innerHTML="Are you ready for your future?";
+
+terminal.appendChild(q);
+
+const info=document.createElement("div");
+info.className="line";
+info.style.marginTop="15px";
+info.innerHTML="Catch the button if you can 😄";
+
+terminal.appendChild(info);
+
+const yes=document.createElement("button");
+yes.innerHTML="YES";
+yes.style.display="inline-block";
+yes.style.position="fixed";
+yes.style.fontSize="10px";
+yes.style.padding="6px 10px";
+
+document.body.appendChild(yes);
+
+moveTinyButton();
+
+const timer=setInterval(moveTinyButton,700);
+
+yes.onclick=()=>{
+
+clearInterval(timer);
+
+yes.remove();
+
+showEnding();
+
+};
+
+}
+
+function moveTinyButton(){
+
+const btn=document.querySelector("body > button:last-child");
+
+if(!btn) return;
+
+const x=Math.random()*(window.innerWidth-60);
+const y=Math.random()*(window.innerHeight-60);
+
+btn.style.left=x+"px";
+btn.style.top=y+"px";
+
+}
+
+function showEnding(){
+
+terminal.innerHTML="";
+
+const lines=[
+
+"",
+
+"SYSTEM MESSAGE",
+
+"",
+
+"Future Status : Bright",
+
+"Confidence Level : 100%",
+
+"",
+
+"You're going to have a great day.",
+
+"",
+
+"Good luck, Commerce Legends.",
+
+"",
+
+"Remember:",
+
+"Study hard.",
+
+"Sleep well.",
+
+"Stop stealing pens.",
+
+"",
+
+"Final AI Verdict:",
+
+"Keep making memories...",
+
+"",
+
+"████████████████████",
+
+"END OF REPORT",
+
+"",
+
+"Connection Terminated."
+
+];
+
+let i=0;
+
+const timer=setInterval(()=>{
+
+const line=document.createElement("div");
+
+line.className="line";
+
+line.innerHTML=lines[i];
+
+terminal.appendChild(line);
+
+terminal.scrollTop=terminal.scrollHeight;
+
+i++;
+
+if(i>=lines.length){
+
+clearInterval(timer);
+
+setTimeout(glitchEffect,1500);
+
+}
+
+},450);
+
+}
+
+function glitchEffect(){
+
+let count=0;
+
+const glitch=setInterval(()=>{
+
+document.body.style.filter=
+count%2
+?
+"invert(1) hue-rotate(180deg)"
+:
+"none";
+
+count++;
+
+if(count>8){
+
+clearInterval(glitch);
+
+document.body.style.filter="none";
+
+}
+
+},120);
+
+}
 
 intro();   // starts the website
 
