@@ -28,12 +28,17 @@ canvas{
     z-index:-1;
 }
 #terminal{
+ #terminal{
     position:relative;
+
     width:min(92%,950px);
     height:90vh;
+
     margin:20px auto;
-  
-    padding:40px 40px 180px;
+
+    padding:24px;
+    padding-bottom:120px;
+
     background:rgba(10,20,20,.38);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
@@ -50,8 +55,6 @@ canvas{
 
     scroll-behavior:smooth;
     -webkit-overflow-scrolling:touch;
-
-    z-index:2;
 }
 
 #terminal::before{
