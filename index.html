@@ -82,6 +82,23 @@ button{
 
 const terminal=document.getElementById("terminal");
 
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function beep(freq, duration=80, type="square", volume=0.02){
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.value = volume;
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration/1000);
+}
+
 function wait(ms){
     return new Promise(r=>setTimeout(r,ms));
 }
@@ -107,6 +124,8 @@ async function type(text,speed=30){
             if(i<text.length){
 
                 line.insertBefore(document.createTextNode(text[i]),cursor);
+
+if(text[i]!=" ") beep(900,10,"square",0.008);
 
                 i++;
 
@@ -196,7 +215,10 @@ btn.style.display="inline-block";
 
 terminal.appendChild(btn);
 
-btn.onclick=boot;
+btn.onclick=()=>{
+    audioCtx.resume();
+    boot();
+};
 
 }
 
@@ -236,6 +258,10 @@ await type("Bypassing Teacher Password...");
 await wait(1200);
 
 await type("Password Accepted.");
+
+beep(900,80);
+setTimeout(()=>beep(1200,80),120);
+
 await wait(700);
 
 await type("");
@@ -323,6 +349,7 @@ await wait(900);
 await type("");
 
 await type("SYSTEM ERROR:");
+beep(180,220,"sawtooth");
 await wait(400);
 
 await type("Too much nonsense detected.");
@@ -436,10 +463,11 @@ await type("");
 await type("Human brain is design to adapt to environmental chaos...");
 
 await type("system error");
+beep(180,220,"sawtooth");
 
 await wait(1800);
 
-await type("We detected you chose Math over Entrepreneurship. Our system cannot compute this level of poor decision-making");
+await type("We detected some of you chose Math over Entrepreneurship. Our system cannot compute this level of poor decision-making");
 
 await wait(1800);
 
@@ -1238,6 +1266,9 @@ const lines=[
 "████████████████████",
 
 "END OF REPORT",
+beep(500,120);
+setTimeout(()=>beep(350,180),180);
+setTimeout(()=>beep(220,300),420);
 
 "",
 
