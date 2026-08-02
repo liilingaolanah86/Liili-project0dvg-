@@ -322,7 +322,7 @@ await wait(900);
 
 await type("");
 
-await type("Reason:");
+await type("SYSTEM ERROR:");
 await wait(400);
 
 await type("Too much nonsense detected.");
@@ -393,7 +393,7 @@ await wait(600);
 
 await type("");
 
-await type("This class has existed for only a few weeks.");
+await type("This class has existed since July 7");
 
 await wait(1000);
 
@@ -409,7 +409,7 @@ await type("✔ Friend groups have already formed.");
 
 await wait(900);
 
-await type("✔ Benches have already become private property untill the class teacher said otherwise.");
+await type("✔ Benches have already become private property")
 
 await wait(900);
 
@@ -501,7 +501,7 @@ await wait(900);
 
 await type("");
 
-await type("...ok not bad😂.");
+await type("...ok not bad.");
 
 await wait(1500);
 
@@ -625,7 +625,7 @@ await wait(900);
 
 await type("");
 
-await type("> Panic spreads faster than Wi-Fi.");
+await type("> Panic spreads fast.");
 
 await wait(1500);
 
@@ -917,7 +917,7 @@ await type("");
 
 await type("This class is");
 
-await wait(700);
+await wait(1800);
 
 await type("amazingly...awfu...great");
 
@@ -928,40 +928,6 @@ await type("");
 await type("highly entertaining...");
 
 await wait(900);
-
-await type("");
-
-await type("and");
-
-await wait(700);
-
-await type("already functioning like it has known each other for years.");
-
-await wait(1800);
-
-await type("");
-
-await type("No serious crimes detected.");
-
-await wait(800);
-
-await type("");
-
-await type("Only excessive levels of");
-
-await wait(700);
-
-await type("laughter,");
-
-await wait(400);
-
-await type("friendship,");
-
-await wait(400);
-
-await type("and last-minute confidence.");
-
-await wait(2000);
 
 await type("");
 
@@ -991,13 +957,9 @@ await type("CLASSIFIED COMMERCE DATABASE.");
 
 await wait(1200);
 
-await type("");
+await type("wait");
 
-await type("Press F to pay respect to the missing pens.");
-
-await wait(1000);
-
-await type("");
+await wait(800);
 
 await type("One final verification is required...");
 
@@ -1028,31 +990,37 @@ return;
 const quiz = [
 {
 question:"Do you agree with this report?",
+correct:"yes",
 yesReply:"System: Excellent. Correct answer recorded.",
 noReply:"System: Opinion noted."
 },
 {
 question:"Are you the quiet student?",
+correct:"no",
 yesReply:"System: Interesting...",
 noReply:"System: Volume levels confirmed."
 },
 {
 question:"Are you a good student?",
+correct:"no",
 yesReply:"System: Confidence detected.",
 noReply:"System: Honesty detected."
 },
 {
 question:"Are you a Sigma?",
+correct:"yes",
 yesReply:"System: Aura level increasing...",
 noReply:"System: Interesting choice."
 },
 {
 question:"Are you the secret main character of this school?",
+correct:"yes",
 yesReply:"System: Plot armor activated.",
 noReply:"System: Background character confirmed."
 },
 {
 question:"Have you ever spent a solid hour practicing your signature for when you're famous?",
+correct:"yes",
 yesReply:"System: Future celebrity profile created.",
 noReply:"System: Fame postponed."
 }
@@ -1111,19 +1079,38 @@ reply.className="line";
 reply.style.marginTop="30px";
 terminal.appendChild(reply);
 
-yes.onclick=()=>{
+// figure out which button is the "wrong" one that should dodge
+const dodgeBtn = q.correct==="yes" ? no : yes;
+const stayBtn = q.correct==="yes" ? yes : no;
 
-reply.innerHTML=q.yesReply;
+// make the dodge button run away whenever the user tries to touch/click it
+function dodge(){
+  dodgeBtn.style.position="fixed";
+  const margin=50;
+  const maxX=window.innerWidth-margin*2;
+  const maxY=window.innerHeight-margin*2;
+  const x=margin+Math.random()*maxX;
+  const y=margin+Math.random()*maxY;
+  dodgeBtn.style.left=x+"px";
+  dodgeBtn.style.top=y+"px";
+}
 
-setTimeout(nextQuestion,1200);
+dodgeBtn.addEventListener("mouseenter",dodge);
+dodgeBtn.addEventListener("mousedown",(e)=>{ e.preventDefault(); dodge(); });
+dodgeBtn.addEventListener("touchstart",(e)=>{ e.preventDefault(); dodge(); },{passive:false});
+dodgeBtn.addEventListener("pointerdown",(e)=>{ e.preventDefault(); dodge(); });
 
+// prevent the dodge button from ever actually resolving the question
+dodgeBtn.onclick=(e)=>{
+  e.preventDefault();
+  dodge();
 };
 
-no.onclick=()=>{
+stayBtn.onclick=()=>{
 
-reply.innerHTML=q.noReply;
+reply.innerHTML = q.correct==="yes" ? q.yesReply : q.noReply;
 
-setTimeout(nextQuestion,1800);
+setTimeout(nextQuestion, q.correct==="yes" ? 1200 : 1800);
 
 };
 
@@ -1169,7 +1156,7 @@ terminal.appendChild(q);
 const info=document.createElement("div");
 info.className="line";
 info.style.marginTop="15px";
-info.innerHTML="Catch the button if you can 😄";
+info.innerHTML="u are the future of yesterday";
 
 terminal.appendChild(info);
 
