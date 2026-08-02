@@ -32,8 +32,8 @@ canvas{
     width:min(92%,950px);
     height:90vh;
     margin:20px auto;
-    padding:90px;
-
+  
+    padding:40px 40px 180px;
     background:rgba(10,20,20,.38);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
@@ -218,8 +218,14 @@ if(text[i]!=" ") beep(900,10,"square",0.03);
 
                 i++;
 
-                terminal.scrollTop=terminal.scrollHeight;
-
+               // Only auto-scroll if the user is already near the bottom
+if (
+    terminal.scrollHeight -
+    terminal.scrollTop -
+    terminal.clientHeight < 120
+){
+    terminal.scrollTop = terminal.scrollHeight;
+}
             }else{
 
                 clearInterval(timer);
