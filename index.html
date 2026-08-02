@@ -1197,6 +1197,10 @@ const timer=setInterval(moveTinyButton,700);
 
 yes.onclick=()=>{
 
+beep(1000,80);
+setTimeout(()=>beep(1300,80),100);
+setTimeout(()=>beep(1600,120),220);
+
 clearInterval(timer);
 
 yes.remove();
@@ -1266,9 +1270,7 @@ const lines=[
 "████████████████████",
 
 "END OF REPORT",
-beep(500,120);
-setTimeout(()=>beep(350,180),180);
-setTimeout(()=>beep(220,300),420);
+
 
 "",
 
@@ -1288,7 +1290,13 @@ line.innerHTML=lines[i];
 
 terminal.appendChild(line);
 
-terminal.scrollTop=terminal.scrollHeight;
+terminal.scrollTop = terminal.scrollHeight;
+
+if(lines[i] === "END OF REPORT"){
+    beep(500,120);
+    setTimeout(()=>beep(350,180),180);
+    setTimeout(()=>beep(220,300),420);
+}
 
 i++;
 
