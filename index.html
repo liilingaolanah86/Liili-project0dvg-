@@ -13,10 +13,11 @@
 }
 
 body{
-    background:#000;
-    color:#00ff66;
-    font-family:Consolas, monospace;
+    margin:0;
     overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:radial-gradient(circle at top,#103b2a,#050505 65%);
+    color:#9dffbf;
 }
 
 canvas{
@@ -25,25 +26,32 @@ canvas{
     left:0;
     z-index:-1;
 }
-
 #terminal{
-    width:90%;
-    max-width:900px;
+    position:relative;
+    width:min(92%,950px);
     height:90vh;
-    margin:20px auto;
-    border:1px solid #00ff66;
-    padding:20px;
+    margin:30px auto;
+    background:rgba(10,20,20,.38);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(0,255,150,.25);
+    border-radius:22px;
+    box-shadow:
+        0 0 40px rgba(0,255,150,.15),
+        inset 0 0 25px rgba(255,255,255,.04);
+    padding:30px;
     overflow-y:auto;
-    background:rgba(0,0,0,.85);
-    box-shadow:0 0 20px rgba(0,255,100,.25);
 }
 
 .line{
     margin:8px 0;
     white-space:pre-wrap;
     font-size:18px;
+    line-height:1.8;
+    color:#baffd0;
+    text-shadow:0 0 8px rgba(0,255,150,.4);
+    animation:fade .35s ease;
 }
-
 .cursor{
     display:inline-block;
     width:8px;
@@ -61,13 +69,68 @@ canvas{
 
 button{
     margin-top:25px;
-    padding:12px 30px;
-    border:none;
-    background:#00ff66;
-    color:#000;
+    padding:14px 34px;
+    border-radius:14px;
+    border:1px solid rgba(0,255,150,.25);
+    background:rgba(0,255,150,.12);
+    backdrop-filter:blur(14px);
+    color:#9dffbf;
     font-weight:bold;
     cursor:pointer;
     display:none;
+    transition:.25s;
+}
+
+button:hover{
+    transform:translateY(-2px) scale(1.05);
+    box-shadow:0 0 25px rgba(0,255,150,.45);
+}
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(8px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+#terminal::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,.05),transparent);
+pointer-events:none;
+}
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:radial-gradient(#00ff8840 1px,transparent 1px);
+background-size:35px 35px;
+animation:moveParticles 18s linear infinite;
+opacity:.25;
+pointer-events:none;
+}
+
+@keyframes moveParticles{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-35px);
+}
+}
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#00ff88;
+border-radius:20px;
 }
 </style>
 
@@ -1107,6 +1170,7 @@ const stayBtn = q.correct==="yes" ? yes : no;
 
 // make the dodge button run away whenever the user tries to touch/click it
 function dodge(){
+beep(250,40,"sawtooth",0.03);
   dodgeBtn.style.position="fixed";
   const margin=50;
   const maxX=window.innerWidth-margin*2;
@@ -1129,6 +1193,9 @@ dodgeBtn.onclick=(e)=>{
 };
 
 stayBtn.onclick=()=>{
+
+beep(1000,80);
+setTimeout(()=>beep(1400,60),100);
 
 reply.innerHTML = q.correct==="yes" ? q.yesReply : q.noReply;
 
