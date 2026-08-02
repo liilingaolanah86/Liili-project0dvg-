@@ -28,30 +28,32 @@ canvas{
     z-index:-1;
 }
 #terminal{
- #terminal{
     position:relative;
 
-    width:min(92%,950px);
-    height:90vh;
+    width:calc(100vw - 24px);
+    max-width:100%;
+    height:92vh;
 
-    margin:20px auto;
+    margin:12px auto;
+    padding:22px 18px 120px;
 
-    padding:24px;
-    padding-bottom:120px;
-
-    background:rgba(10,20,20,.38);
+    background:rgba(10,20,20,.40);
     backdrop-filter:blur(18px);
     -webkit-backdrop-filter:blur(18px);
 
     border:1px solid rgba(0,255,150,.25);
-    border-radius:22px;
+    border-radius:20px;
 
     box-shadow:
-        0 0 40px rgba(0,255,150,.15),
-        inset 0 0 25px rgba(255,255,255,.04);
+        0 0 35px rgba(0,255,150,.15),
+        inset 0 0 20px rgba(255,255,255,.05);
 
     overflow-y:auto;
     overflow-x:hidden;
+
+    word-break:normal;
+    overflow-wrap:break-word;
+    white-space:normal;
 
     scroll-behavior:smooth;
     -webkit-overflow-scrolling:touch;
@@ -73,12 +75,17 @@ canvas{
 
 
 .line{
-    margin:8px 0;
-    white-space:pre-wrap;
+    margin:10px 0;
     font-size:18px;
-    line-height:1.8;
-    color:#baffd0;
-    text-shadow:0 0 8px rgba(0,255,150,.4);
+    line-height:1.75;
+
+    white-space:pre-wrap;
+    word-break:normal;
+    overflow-wrap:break-word;
+
+    color:#c8ffe0;
+    text-shadow:0 0 8px rgba(0,255,150,.35);
+
     animation:fade .35s ease;
 }
 .cursor{
